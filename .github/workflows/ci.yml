@@ -20,4 +20,8 @@ jobs:
         run: python -m ruff check src tests
       - name: Test
         run: python -m pytest -q
-
+      - name: Validate fixtures
+        run: |
+          pharmassist-synthdata validate --in fixtures/seed_000042.json
+          pharmassist-synthdata validate --in fixtures/seed_000043.json
+          pharmassist-synthdata validate --in fixtures/seed_000044.json
