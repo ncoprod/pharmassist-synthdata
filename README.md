@@ -13,6 +13,18 @@ Goals:
 
 Status: scaffolding (implementation coming next).
 
+## Quick start
+
+```bash
+make setup
+make gen-sample
+```
+
+CLI:
+
+```bash
+pharmassist-synthdata generate --seed 42 --pretty
+```
+
 ## License
 MIT (see `LICENSE`).
-
