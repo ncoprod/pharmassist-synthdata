@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import json
 import sys
+from pathlib import Path
 
 from .generate import generate_case
 
@@ -30,7 +31,7 @@ def build_parser() -> argparse.ArgumentParser:
     gen = sub.add_parser("generate", help="Generate a deterministic synthetic case bundle (JSON).")
     gen.add_argument("--seed", type=int, default=0, help="Deterministic seed.")
     gen.add_argument("--pretty", action="store_true", help="Pretty-print JSON.")
-    gen.add_argument("--out", type=lambda p: __import__("pathlib").Path(p), help="Write output to file.")
+    gen.add_argument("--out", type=Path, help="Write output to file.")
     gen.set_defaults(func=_cmd_generate)
 
     return parser
@@ -44,4 +45,3 @@ def main(argv: list[str] | None = None) -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-
