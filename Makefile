@@ -1,4 +1,4 @@
-.PHONY: help setup lint test gen gen-sample
+.PHONY: help setup lint test gen gen-ocr gen-sample
 
 PYTHON ?= python3
 VENV_DIR := .venv
@@ -9,6 +9,7 @@ help:
 	@echo "  lint       - Ruff lint"
 	@echo "  test       - Pytest"
 	@echo "  gen        - Generate deterministic fixtures (and validate them)"
+	@echo "  gen-ocr    - Generate deterministic OCR suite fixtures"
 	@echo "  gen-sample - Generate a sample fixture to stdout"
 
 $(VENV_DIR):
@@ -35,3 +36,12 @@ gen: $(VENV_DIR)
 	$(VENV_DIR)/bin/pharmassist-synthdata validate --in fixtures/seed_000043.json
 	$(VENV_DIR)/bin/pharmassist-synthdata generate --seed 44 --pretty --out fixtures/seed_000044.json
 	$(VENV_DIR)/bin/pharmassist-synthdata validate --in fixtures/seed_000044.json
+
+gen-ocr: $(VENV_DIR)
+	mkdir -p fixtures/ocr_suite
+	$(VENV_DIR)/bin/pharmassist-synthdata generate --seed 42 --pretty --out fixtures/ocr_suite/case_000042.json
+	$(VENV_DIR)/bin/pharmassist-synthdata validate --in fixtures/ocr_suite/case_000042.json
+	$(VENV_DIR)/bin/pharmassist-synthdata generate --seed 43 --pretty --out fixtures/ocr_suite/case_000043.json
+	$(VENV_DIR)/bin/pharmassist-synthdata validate --in fixtures/ocr_suite/case_000043.json
+	$(VENV_DIR)/bin/pharmassist-synthdata generate --seed 44 --pretty --out fixtures/ocr_suite/case_000044.json
+	$(VENV_DIR)/bin/pharmassist-synthdata validate --in fixtures/ocr_suite/case_000044.json
