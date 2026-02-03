@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pharmassist-synthdata"
+version = "0.0.0"
+description = "Deterministic synthetic generators for PharmAssist (no real patient data)."
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [{name = "Nicolas Coquelet"}]
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+  "ruff>=0.8,<0.9",
+  "pytest>=8,<9"
+]
+
+[project.scripts]
+pharmassist-synthdata = "pharmassist_synthdata.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+
