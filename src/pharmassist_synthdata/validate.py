@@ -34,6 +34,36 @@ def validate_instance(instance: Any, *, schema_name: str) -> list[SchemaIssue]:
 def validate_case_bundle(bundle: dict[str, Any]) -> list[SchemaIssue]:
     issues: list[SchemaIssue] = []
 
+    # Internal contract (not a shared JSON Schema): OCR-like text used to test extraction.
+    intake_text_ocr = bundle.get("intake_text_ocr")
+    if isinstance(intake_text_ocr, dict):
+        fr = intake_text_ocr.get("fr")
+        en = intake_text_ocr.get("en")
+        if not (isinstance(fr, str) and fr.strip()):
+            issues.append(
+                SchemaIssue(
+                    schema_name="intake_text_ocr",
+                    json_path="$.intake_text_ocr.fr",
+                    message="Missing or invalid FR intake_text_ocr (expected non-empty string)",
+                )
+            )
+        if not (isinstance(en, str) and en.strip()):
+            issues.append(
+                SchemaIssue(
+                    schema_name="intake_text_ocr",
+                    json_path="$.intake_text_ocr.en",
+                    message="Missing or invalid EN intake_text_ocr (expected non-empty string)",
+                )
+            )
+    else:
+        issues.append(
+            SchemaIssue(
+                schema_name="intake_text_ocr",
+                json_path="$.intake_text_ocr",
+                message="Missing or invalid intake_text_ocr object",
+            )
+        )
+
     llm_context = bundle.get("llm_context")
     if isinstance(llm_context, dict):
         issues.extend(validate_instance(llm_context, schema_name="llm_context"))

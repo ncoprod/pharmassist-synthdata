@@ -3,6 +3,7 @@ from __future__ import annotations
 from typing import Any
 
 from .catalog import generate_catalog
+from .ocr_text import generate_intake_text_ocr
 from .patient import generate_patient
 
 SCHEMA_VERSION = "0.0.0"
@@ -32,7 +33,7 @@ def generate_intake_extracted_stub(seed: int) -> dict[str, Any]:
 
 
 def generate_case_bundle(seed: int = 0) -> dict[str, Any]:
-    return {
+    bundle: dict[str, Any] = {
         "schema_version": SCHEMA_VERSION,
         "seed": seed,
         "case_ref": f"case_{seed:06d}",
@@ -41,3 +42,8 @@ def generate_case_bundle(seed: int = 0) -> dict[str, Any]:
         "products": generate_catalog(seed),
     }
 
+    # Add an OCR-like untrusted text field derived from the structured ground truth.
+    # This remains PHI-free by construction.
+    bundle["intake_text_ocr"] = generate_intake_text_ocr(seed, bundle)
+
+    return bundle
