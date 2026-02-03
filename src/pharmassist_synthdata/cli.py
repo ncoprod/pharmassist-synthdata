@@ -6,6 +6,7 @@ import sys
 from pathlib import Path
 
 from .generate import generate_case
+from .validate import validate_case_bundle
 
 
 def _cmd_generate(args: argparse.Namespace) -> int:
@@ -24,6 +25,22 @@ def _cmd_generate(args: argparse.Namespace) -> int:
     return 0
 
 
+def _cmd_validate(args: argparse.Namespace) -> int:
+    payload = json.loads(args.in_path.read_text(encoding="utf-8"))
+    if not isinstance(payload, dict):
+        sys.stderr.write("Input must be a JSON object\n")
+        return 1
+
+    issues = validate_case_bundle(payload)
+    if issues:
+        for i in issues:
+            sys.stderr.write(f"[INVALID] {i.schema_name} {i.json_path}: {i.message}\n")
+        return 1
+
+    sys.stdout.write("OK\n")
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="pharmassist-synthdata")
     sub = parser.add_subparsers(dest="cmd", required=True)
@@ -33,6 +50,10 @@ def build_parser() -> argparse.ArgumentParser:
     gen.add_argument("--pretty", action="store_true", help="Pretty-print JSON.")
     gen.add_argument("--out", type=Path, help="Write output to file.")
     gen.set_defaults(func=_cmd_generate)
+
+    val = sub.add_parser("validate", help="Validate a case bundle JSON against vendored schemas.")
+    val.add_argument("--in", dest="in_path", type=Path, required=True, help="Input JSON file.")
+    val.set_defaults(func=_cmd_validate)
 
     return parser
 
