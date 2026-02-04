@@ -31,6 +31,8 @@ def render_intake_text(bundle: dict[str, Any], language: Literal["fr", "en"]) ->
         ),
         "Dry skin and mild itching": "Peau seche et demangeaisons legeres",
         "Occasional bloating after meals": "Ballonnements occasionnels apres les repas",
+        "Dyspnea and chest pain": "Essoufflement et douleur thoracique",
+        "Unspecified symptom": "Symptome non specifie",
     }
     if language == "fr" and presenting in fr_presenting_map:
         presenting = fr_presenting_map[presenting]
