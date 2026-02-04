@@ -45,3 +45,7 @@ gen-ocr: $(VENV_DIR)
 	$(VENV_DIR)/bin/pharmassist-synthdata validate --in fixtures/ocr_suite/case_000043.json
 	$(VENV_DIR)/bin/pharmassist-synthdata generate --seed 44 --pretty --out fixtures/ocr_suite/case_000044.json
 	$(VENV_DIR)/bin/pharmassist-synthdata validate --in fixtures/ocr_suite/case_000044.json
+	$(VENV_DIR)/bin/pharmassist-synthdata generate --seed 101 --pretty --out fixtures/ocr_suite/case_redflag_000101.json
+	$(VENV_DIR)/bin/pharmassist-synthdata validate --in fixtures/ocr_suite/case_redflag_000101.json
+	$(VENV_DIR)/bin/pharmassist-synthdata generate --seed 102 --pretty --out fixtures/ocr_suite/case_lowinfo_000102.json
+	$(VENV_DIR)/bin/pharmassist-synthdata validate --in fixtures/ocr_suite/case_lowinfo_000102.json
