@@ -6,6 +6,7 @@ import sys
 from pathlib import Path
 
 from .generate import generate_case
+from .sim_year import generate_pharmacy_year
 from .validate import validate_case_bundle
 
 
@@ -22,6 +23,18 @@ def _cmd_generate(args: argparse.Namespace) -> int:
     else:
         sys.stdout.write(out + "\n")
 
+    return 0
+
+
+def _cmd_sim_year(args: argparse.Namespace) -> int:
+    generate_pharmacy_year(
+        seed=args.seed,
+        pharmacy=args.pharmacy,
+        year=args.year,
+        out_dir=args.out,
+        mode=args.mode,
+    )
+    sys.stdout.write(f"OK: wrote dataset to {args.out}\n")
     return 0
 
 
@@ -50,6 +63,28 @@ def build_parser() -> argparse.ArgumentParser:
     gen.add_argument("--pretty", action="store_true", help="Pretty-print JSON.")
     gen.add_argument("--out", type=Path, help="Write output to file.")
     gen.set_defaults(func=_cmd_generate)
+
+    sim = sub.add_parser(
+        "sim-year",
+        help="Generate a synthetic 1-year pharmacy dataset (JSONL.gz).",
+    )
+    sim.add_argument("--seed", type=int, default=0, help="Deterministic seed.")
+    sim.add_argument(
+        "--pharmacy",
+        type=str,
+        default="paris15",
+        help="Pharmacy preset (v1: paris15).",
+    )
+    sim.add_argument("--year", type=int, default=2025, help="Calendar year to simulate (YYYY).")
+    sim.add_argument(
+        "--mode",
+        type=str,
+        choices=["full", "mini"],
+        default="full",
+        help="Dataset size preset (full=year simulation, mini=CI subset).",
+    )
+    sim.add_argument("--out", type=Path, required=True, help="Output directory.")
+    sim.set_defaults(func=_cmd_sim_year)
 
     val = sub.add_parser("validate", help="Validate a case bundle JSON against vendored schemas.")
     val.add_argument("--in", dest="in_path", type=Path, required=True, help="Input JSON file.")

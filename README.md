@@ -26,5 +26,11 @@ CLI:
 pharmassist-synthdata generate --seed 42 --pretty
 ```
 
+Pharmacy-year dataset:
+
+```bash
+pharmassist-synthdata sim-year --seed 42 --pharmacy paris15 --year 2025 --out ./out
+```
+
 ## License
 MIT (see `LICENSE`).
