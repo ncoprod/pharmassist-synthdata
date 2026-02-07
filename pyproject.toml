@@ -11,7 +11,8 @@ requires-python = ">=3.10"
 license = {text = "MIT"}
 authors = [{name = "Nicolas Coquelet"}]
 dependencies = [
-  "jsonschema>=4.22,<5"
+  "jsonschema>=4.22,<5",
+  "reportlab>=4.2,<5"
 ]
 
 [project.optional-dependencies]

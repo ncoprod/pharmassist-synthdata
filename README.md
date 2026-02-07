@@ -32,5 +32,13 @@ Pharmacy-year dataset:
 pharmassist-synthdata sim-year --seed 42 --pharmacy paris15 --year 2025 --out ./out
 ```
 
+Prescription PDF suite (text-layer, deterministic):
+
+```bash
+pharmassist-synthdata gen-rx-pdf-suite --seed 42 --out ./out/rx_pdf_suite
+```
+
+`--seed` controls the deterministic case set (`seed`, `seed+59`, `seed+60`) and therefore the generated PDF filenames/hashes.
+
 ## License
 MIT (see `LICENSE`).

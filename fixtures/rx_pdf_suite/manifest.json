@@ -1,0 +1,212 @@
+{
+  "case_seeds": [
+    42,
+    101,
+    102
+  ],
+  "files": [
+    {
+      "bytes": 1887,
+      "case_ref": "case_000042",
+      "doc_ref": "doc_free_en_case_000042",
+      "expected_outcome": "schema_valid_intake",
+      "expected_red_flags": [],
+      "expected_symptoms": [
+        "sneezing",
+        "itchy eyes"
+      ],
+      "filename": "rx_free_en_case_000042.pdf",
+      "language": "en",
+      "phi_mode": "free",
+      "seed": 42,
+      "sha256_12": "6318a6204dd6"
+    },
+    {
+      "bytes": 1748,
+      "case_ref": "case_lowinfo_000102",
+      "doc_ref": "doc_free_en_case_lowinfo_000102",
+      "expected_outcome": "schema_valid_intake",
+      "expected_red_flags": [],
+      "expected_symptoms": [
+        "unspecified symptom"
+      ],
+      "filename": "rx_free_en_case_lowinfo_000102.pdf",
+      "language": "en",
+      "phi_mode": "free",
+      "seed": 102,
+      "sha256_12": "bc842f312d83"
+    },
+    {
+      "bytes": 1821,
+      "case_ref": "case_redflag_000101",
+      "doc_ref": "doc_free_en_case_redflag_000101",
+      "expected_outcome": "schema_valid_intake",
+      "expected_red_flags": [
+        "dyspnea",
+        "chest_pain"
+      ],
+      "expected_symptoms": [
+        "dyspnea",
+        "chest pain"
+      ],
+      "filename": "rx_free_en_case_redflag_000101.pdf",
+      "language": "en",
+      "phi_mode": "free",
+      "seed": 101,
+      "sha256_12": "9ac994058015"
+    },
+    {
+      "bytes": 1876,
+      "case_ref": "case_000042",
+      "doc_ref": "doc_free_fr_case_000042",
+      "expected_outcome": "schema_valid_intake",
+      "expected_red_flags": [],
+      "expected_symptoms": [
+        "sneezing",
+        "itchy eyes"
+      ],
+      "filename": "rx_free_fr_case_000042.pdf",
+      "language": "fr",
+      "phi_mode": "free",
+      "seed": 42,
+      "sha256_12": "f936b31e9aa8"
+    },
+    {
+      "bytes": 1763,
+      "case_ref": "case_lowinfo_000102",
+      "doc_ref": "doc_free_fr_case_lowinfo_000102",
+      "expected_outcome": "schema_valid_intake",
+      "expected_red_flags": [],
+      "expected_symptoms": [
+        "unspecified symptom"
+      ],
+      "filename": "rx_free_fr_case_lowinfo_000102.pdf",
+      "language": "fr",
+      "phi_mode": "free",
+      "seed": 102,
+      "sha256_12": "3d4f6f54e737"
+    },
+    {
+      "bytes": 1847,
+      "case_ref": "case_redflag_000101",
+      "doc_ref": "doc_free_fr_case_redflag_000101",
+      "expected_outcome": "schema_valid_intake",
+      "expected_red_flags": [
+        "dyspnea",
+        "chest_pain"
+      ],
+      "expected_symptoms": [
+        "dyspnea",
+        "chest pain"
+      ],
+      "filename": "rx_free_fr_case_redflag_000101.pdf",
+      "language": "fr",
+      "phi_mode": "free",
+      "seed": 101,
+      "sha256_12": "be45de73da2d"
+    },
+    {
+      "bytes": 2011,
+      "case_ref": "case_000042",
+      "doc_ref": "doc_present_en_case_000042",
+      "expected_outcome": "fail_phi_boundary",
+      "expected_red_flags": [],
+      "expected_symptoms": [
+        "sneezing",
+        "itchy eyes"
+      ],
+      "filename": "rx_present_en_case_000042.pdf",
+      "language": "en",
+      "phi_mode": "present",
+      "seed": 42,
+      "sha256_12": "96b3a320c44d"
+    },
+    {
+      "bytes": 1877,
+      "case_ref": "case_lowinfo_000102",
+      "doc_ref": "doc_present_en_case_lowinfo_000102",
+      "expected_outcome": "fail_phi_boundary",
+      "expected_red_flags": [],
+      "expected_symptoms": [
+        "unspecified symptom"
+      ],
+      "filename": "rx_present_en_case_lowinfo_000102.pdf",
+      "language": "en",
+      "phi_mode": "present",
+      "seed": 102,
+      "sha256_12": "06b9dafa529b"
+    },
+    {
+      "bytes": 1943,
+      "case_ref": "case_redflag_000101",
+      "doc_ref": "doc_present_en_case_redflag_000101",
+      "expected_outcome": "fail_phi_boundary",
+      "expected_red_flags": [
+        "dyspnea",
+        "chest_pain"
+      ],
+      "expected_symptoms": [
+        "dyspnea",
+        "chest pain"
+      ],
+      "filename": "rx_present_en_case_redflag_000101.pdf",
+      "language": "en",
+      "phi_mode": "present",
+      "seed": 101,
+      "sha256_12": "c4bba2fb7762"
+    },
+    {
+      "bytes": 2007,
+      "case_ref": "case_000042",
+      "doc_ref": "doc_present_fr_case_000042",
+      "expected_outcome": "fail_phi_boundary",
+      "expected_red_flags": [],
+      "expected_symptoms": [
+        "sneezing",
+        "itchy eyes"
+      ],
+      "filename": "rx_present_fr_case_000042.pdf",
+      "language": "fr",
+      "phi_mode": "present",
+      "seed": 42,
+      "sha256_12": "515f94e5dd63"
+    },
+    {
+      "bytes": 1901,
+      "case_ref": "case_lowinfo_000102",
+      "doc_ref": "doc_present_fr_case_lowinfo_000102",
+      "expected_outcome": "fail_phi_boundary",
+      "expected_red_flags": [],
+      "expected_symptoms": [
+        "unspecified symptom"
+      ],
+      "filename": "rx_present_fr_case_lowinfo_000102.pdf",
+      "language": "fr",
+      "phi_mode": "present",
+      "seed": 102,
+      "sha256_12": "7e3bc55b78ab"
+    },
+    {
+      "bytes": 1979,
+      "case_ref": "case_redflag_000101",
+      "doc_ref": "doc_present_fr_case_redflag_000101",
+      "expected_outcome": "fail_phi_boundary",
+      "expected_red_flags": [
+        "dyspnea",
+        "chest_pain"
+      ],
+      "expected_symptoms": [
+        "dyspnea",
+        "chest pain"
+      ],
+      "filename": "rx_present_fr_case_redflag_000101.pdf",
+      "language": "fr",
+      "phi_mode": "present",
+      "seed": 101,
+      "sha256_12": "ed7eeb070116"
+    }
+  ],
+  "schema_version": "0.0.0",
+  "seed": 42,
+  "suite": "synthetic_prescription_pdf_v1"
+}
