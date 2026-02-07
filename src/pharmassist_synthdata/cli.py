@@ -6,6 +6,7 @@ import sys
 from pathlib import Path
 
 from .generate import generate_case
+from .prescription_pdf import generate_prescription_pdf_suite
 from .sim_year import generate_pharmacy_year
 from .validate import validate_case_bundle
 
@@ -54,6 +55,17 @@ def _cmd_validate(args: argparse.Namespace) -> int:
     return 0
 
 
+def _cmd_gen_rx_pdf_suite(args: argparse.Namespace) -> int:
+    manifest = generate_prescription_pdf_suite(
+        out_dir=args.out,
+        seed=args.seed,
+    )
+    sys.stdout.write(
+        f"OK: wrote {len(manifest.get('files') or [])} PDFs + manifest to {args.out}\n"
+    )
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="pharmassist-synthdata")
     sub = parser.add_subparsers(dest="cmd", required=True)
@@ -89,6 +101,24 @@ def build_parser() -> argparse.ArgumentParser:
     val = sub.add_parser("validate", help="Validate a case bundle JSON against vendored schemas.")
     val.add_argument("--in", dest="in_path", type=Path, required=True, help="Input JSON file.")
     val.set_defaults(func=_cmd_validate)
+
+    pdf = sub.add_parser(
+        "gen-rx-pdf-suite",
+        help="Generate deterministic synthetic prescription PDFs (text-layer) + manifest.",
+    )
+    pdf.add_argument(
+        "--seed",
+        type=int,
+        default=42,
+        help="Deterministic base seed used to derive suite case seeds.",
+    )
+    pdf.add_argument(
+        "--out",
+        type=Path,
+        required=True,
+        help="Output directory for PDFs + manifest.",
+    )
+    pdf.set_defaults(func=_cmd_gen_rx_pdf_suite)
 
     return parser
 

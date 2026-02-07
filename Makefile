@@ -1,4 +1,4 @@
-.PHONY: help setup lint test gen gen-ocr gen-sample
+.PHONY: help setup lint test gen gen-ocr gen-rx-pdf-suite gen-sample
 
 PYTHON ?= python3
 VENV_DIR := .venv
@@ -10,6 +10,7 @@ help:
 	@echo "  test       - Pytest"
 	@echo "  gen        - Generate deterministic fixtures (and validate them)"
 	@echo "  gen-ocr    - Generate deterministic OCR suite fixtures"
+	@echo "  gen-rx-pdf-suite - Generate deterministic prescription PDF suite"
 	@echo "  gen-sample - Generate a sample fixture to stdout"
 
 $(VENV_DIR):
@@ -49,3 +50,7 @@ gen-ocr: $(VENV_DIR)
 	$(VENV_DIR)/bin/pharmassist-synthdata validate --in fixtures/ocr_suite/case_redflag_000101.json
 	$(VENV_DIR)/bin/pharmassist-synthdata generate --seed 102 --pretty --out fixtures/ocr_suite/case_lowinfo_000102.json
 	$(VENV_DIR)/bin/pharmassist-synthdata validate --in fixtures/ocr_suite/case_lowinfo_000102.json
+
+gen-rx-pdf-suite: $(VENV_DIR)
+	mkdir -p fixtures/rx_pdf_suite
+	$(VENV_DIR)/bin/pharmassist-synthdata gen-rx-pdf-suite --seed 42 --out fixtures/rx_pdf_suite
