@@ -40,5 +40,13 @@ pharmassist-synthdata gen-rx-pdf-suite --seed 42 --out ./out/rx_pdf_suite
 
 `--seed` controls the deterministic case set (`seed`, `seed+59`, `seed+60`) and therefore the generated PDF filenames/hashes.
 
+## Validation
+
+```bash
+make lint
+make test
+make gen-rx-pdf-suite
+```
+
 ## License
 MIT (see `LICENSE`).
